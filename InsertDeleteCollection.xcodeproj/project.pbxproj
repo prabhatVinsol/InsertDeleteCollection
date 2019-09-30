@@ -15,12 +15,10 @@
 		1900BDCD230135D400828200 /* InsertDeleteCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1900BDCC230135D400828200 /* InsertDeleteCollectionTests.swift */; };
 		1900BDD8230135D400828200 /* InsertDeleteCollectionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1900BDD7230135D400828200 /* InsertDeleteCollectionUITests.swift */; };
 		1900BDE7230143B400828200 /* InsertDeleteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1900BDE6230143B400828200 /* InsertDeleteCollectionViewCell.swift */; };
-		1900BDEA230147D600828200 /* CollectionViewMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1900BDE9230147D600828200 /* CollectionViewMethods.swift */; };
 		1900BDED23014AAD00828200 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1900BDEC23014AAD00828200 /* Content.swift */; };
-		1900BDF22301528500828200 /* AllButtonClickHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1900BDF12301528500828200 /* AllButtonClickHandling.swift */; };
 		1900BDF423018ED400828200 /* Configuration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1900BDF323018ED400828200 /* Configuration.storyboard */; };
 		1900BDF6230190C000828200 /* ConfigurationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1900BDF5230190C000828200 /* ConfigurationViewController.swift */; };
-		1900BDF82301A58D00828200 /* ConfigurationPicker+SliderSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1900BDF72301A58D00828200 /* ConfigurationPicker+SliderSetup.swift */; };
+		195FF5882341EDDA0085AF1F /* CollectionViewConfigurations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 195FF5872341EDDA0085AF1F /* CollectionViewConfigurations.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,12 +53,10 @@
 		1900BDD7230135D400828200 /* InsertDeleteCollectionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertDeleteCollectionUITests.swift; sourceTree = "<group>"; };
 		1900BDD9230135D400828200 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1900BDE6230143B400828200 /* InsertDeleteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertDeleteCollectionViewCell.swift; sourceTree = "<group>"; };
-		1900BDE9230147D600828200 /* CollectionViewMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewMethods.swift; sourceTree = "<group>"; };
 		1900BDEC23014AAD00828200 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
-		1900BDF12301528500828200 /* AllButtonClickHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllButtonClickHandling.swift; sourceTree = "<group>"; };
 		1900BDF323018ED400828200 /* Configuration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Configuration.storyboard; sourceTree = "<group>"; };
 		1900BDF5230190C000828200 /* ConfigurationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationViewController.swift; sourceTree = "<group>"; };
-		1900BDF72301A58D00828200 /* ConfigurationPicker+SliderSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConfigurationPicker+SliderSetup.swift"; sourceTree = "<group>"; };
+		195FF5872341EDDA0085AF1F /* CollectionViewConfigurations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewConfigurations.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,11 +107,11 @@
 		1900BDB6230135D300828200 /* InsertDeleteCollection */ = {
 			isa = PBXGroup;
 			children = (
+				195FF5862341ED010085AF1F /* Singleton */,
 				1900BDF023014F0E00828200 /* Storyboard */,
 				1900BDEF23014EF900828200 /* InternalFiles */,
 				1900BDEE23014EE900828200 /* Controller */,
 				1900BDEB23014A9A00828200 /* Model */,
-				1900BDE8230147AA00828200 /* Extensions */,
 				1900BDE52301437400828200 /* View */,
 				1900BDBE230135D400828200 /* Assets.xcassets */,
 				1900BDC3230135D400828200 /* Info.plist */,
@@ -147,16 +143,6 @@
 				1900BDE6230143B400828200 /* InsertDeleteCollectionViewCell.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		1900BDE8230147AA00828200 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				1900BDE9230147D600828200 /* CollectionViewMethods.swift */,
-				1900BDF12301528500828200 /* AllButtonClickHandling.swift */,
-				1900BDF72301A58D00828200 /* ConfigurationPicker+SliderSetup.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		1900BDEB23014A9A00828200 /* Model */ = {
@@ -192,6 +178,14 @@
 				1900BDF323018ED400828200 /* Configuration.storyboard */,
 			);
 			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		195FF5862341ED010085AF1F /* Singleton */ = {
+			isa = PBXGroup;
+			children = (
+				195FF5872341EDDA0085AF1F /* CollectionViewConfigurations.swift */,
+			);
+			path = Singleton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,13 +321,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1900BDBA230135D300828200 /* ViewController.swift in Sources */,
-				1900BDEA230147D600828200 /* CollectionViewMethods.swift in Sources */,
-				1900BDF82301A58D00828200 /* ConfigurationPicker+SliderSetup.swift in Sources */,
 				1900BDE7230143B400828200 /* InsertDeleteCollectionViewCell.swift in Sources */,
 				1900BDED23014AAD00828200 /* Content.swift in Sources */,
+				195FF5882341EDDA0085AF1F /* CollectionViewConfigurations.swift in Sources */,
 				1900BDF6230190C000828200 /* ConfigurationViewController.swift in Sources */,
 				1900BDB8230135D300828200 /* AppDelegate.swift in Sources */,
-				1900BDF22301528500828200 /* AllButtonClickHandling.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +539,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = InsertDeleteCollectionTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -567,6 +560,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = InsertDeleteCollectionTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -586,6 +580,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = InsertDeleteCollectionUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -605,6 +600,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = InsertDeleteCollectionUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
