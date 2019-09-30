@@ -9,6 +9,7 @@ class ConfigurationViewController: UIViewController {
     @IBOutlet weak var spacingPicker: UIPickerView!
     @IBOutlet weak var sizePicker: UIPickerView!
     @IBOutlet weak var sizeStackView: UIStackView!
+    @IBOutlet weak var spacingStackView: UIStackView!
     internal var finalSelectionDelegate: FinalSelection?
     
     override func viewDidLoad() {
@@ -17,7 +18,7 @@ class ConfigurationViewController: UIViewController {
         sizePicker.dataSource = self
         spacingPicker.delegate = self
         spacingPicker.dataSource = self
-        spacingPicker.isHidden = true
+        spacingStackView.isHidden = true
         initialseSizePicker()
         initiliseSlider()
     }
@@ -77,7 +78,7 @@ extension ConfigurationViewController: UIPickerViewDelegate, UIPickerViewDataSou
         if pickerView == spacingPicker{
             CollectionViewConfigurations.shared.spaceBetweenItems = CollectionViewConfigurations.shared.spacingPickerValue[row]
         } else if pickerView == sizePicker{
-            spacingPicker.isHidden = false
+            spacingStackView.isHidden = false
             CollectionViewConfigurations.shared.cellHeight = CGFloat(integerLiteral: CollectionViewConfigurations.shared.sizePickerValue[row])
             CollectionViewConfigurations.shared.itemsPerRow = Int(view.frame.width/CollectionViewConfigurations.shared.cellHeight)
             initialiseSpacingPicker()

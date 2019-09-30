@@ -45,10 +45,10 @@
                                                     <constraint firstAttribute="height" constant="55.5" id="8t9-8m-Gqw"/>
                                                 </constraints>
                                             </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bXZ-SD-IFr" userLabel="SpacingStackView">
+                                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="bXZ-SD-IFr" userLabel="SpacingStackView">
                                                 <rect key="frame" x="10" y="327" width="355" height="241.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spacing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyY-nH-hqF">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Spacing" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PyY-nH-hqF">
                                                         <rect key="frame" x="0.0" y="0.0" width="355" height="20.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                         <color key="textColor" red="0.59470126300000004" green="0.59470126300000004" blue="0.59470126300000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -137,6 +137,7 @@
                         <outlet property="sizePicker" destination="hiw-yv-Wyo" id="rUB-CX-flA"/>
                         <outlet property="sizeStackView" destination="ORO-c2-91T" id="aKd-mY-3ix"/>
                         <outlet property="spacingPicker" destination="Y6P-Qo-2xc" id="qnX-89-fH1"/>
+                        <outlet property="spacingStackView" destination="bXZ-SD-IFr" id="hB5-Ng-xXh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HWQ-Fv-u7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
