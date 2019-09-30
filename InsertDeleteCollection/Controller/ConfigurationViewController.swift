@@ -17,8 +17,8 @@ class ConfigurationViewController: UIViewController {
         sizePicker.dataSource = self
         spacingPicker.delegate = self
         spacingPicker.dataSource = self
-        sizeStackView.isHidden = true
-        initialiseSpacingPicker()
+        spacingPicker.isHidden = true
+        initialseSizePicker()
         initiliseSlider()
     }
    
@@ -30,8 +30,8 @@ class ConfigurationViewController: UIViewController {
 
     @IBAction func sliderHandling(_ sender: UISlider) {
         switch animationSlider.value {
-        case 0:
-            CollectionViewConfigurations.shared.animationDuration = 0
+        case 0..<0.1:
+            CollectionViewConfigurations.shared.animationDuration = 5
         case 0.1...0.25:
             CollectionViewConfigurations.shared.animationDuration = 4
         case 0.26...0.50:
@@ -54,7 +54,6 @@ extension ConfigurationViewController: UIPickerViewDelegate, UIPickerViewDataSou
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView {
         case spacingPicker:
-            initialiseSpacingPicker()
             return CollectionViewConfigurations.shared.spacingPickerValue.count
         case sizePicker:
             return CollectionViewConfigurations.shared.sizePickerValue.count
@@ -76,12 +75,13 @@ extension ConfigurationViewController: UIPickerViewDelegate, UIPickerViewDataSou
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == spacingPicker{
-            sizeStackView.isHidden = false
             CollectionViewConfigurations.shared.spaceBetweenItems = CollectionViewConfigurations.shared.spacingPickerValue[row]
-            initialseSizePicker()
-            sizePicker.reloadAllComponents()
         } else if pickerView == sizePicker{
+            spacingPicker.isHidden = false
             CollectionViewConfigurations.shared.cellHeight = CGFloat(integerLiteral: CollectionViewConfigurations.shared.sizePickerValue[row])
+            CollectionViewConfigurations.shared.itemsPerRow = Int(view.frame.width/CollectionViewConfigurations.shared.cellHeight)
+            initialiseSpacingPicker()
+            spacingPicker.reloadAllComponents()
         }
     }
 }
@@ -107,19 +107,26 @@ extension ConfigurationViewController {
 
 extension ConfigurationViewController {
     private func initialiseSpacingPicker() {
+        guard let totalAvailableSpace = measureAvailableSpace() else { return }
         CollectionViewConfigurations.shared.spacingPickerValue.removeAll()
-        for i in 0...25 {
+        for i in 0...totalAvailableSpace {
             CollectionViewConfigurations.shared.spacingPickerValue.append(i)
         }
     }
     
     private func initialseSizePicker() {
-        let paddingSpace = CollectionViewConfigurations.shared.spaceBetweenItems * (CollectionViewConfigurations.shared.itemsPerRow + 1)*2
-        let availableWidth = view.frame.width - CGFloat(integerLiteral: paddingSpace)
-        let widthPerItem = Int(availableWidth / CGFloat(integerLiteral: CollectionViewConfigurations.shared.itemsPerRow))
+        let availableWidth = Int(view.frame.width)
         CollectionViewConfigurations.shared.sizePickerValue.removeAll()
-        for i in 25...widthPerItem {
+        for i in 50...availableWidth {
             CollectionViewConfigurations.shared.sizePickerValue.append(i)
         }
+    }
+    
+    private func measureAvailableSpace() -> Int? {
+        let frameWidth = view.frame.width
+        CollectionViewConfigurations.shared.itemsPerRow = Int(frameWidth/CollectionViewConfigurations.shared.cellHeight)
+        let totalCellWidth = Int(CollectionViewConfigurations.shared.cellHeight) * CollectionViewConfigurations.shared.itemsPerRow
+        let availableSpaceToChoose = Int(Int(Int(frameWidth) - totalCellWidth)/(CollectionViewConfigurations.shared.itemsPerRow + 1))
+        return availableSpaceToChoose
     }
 }

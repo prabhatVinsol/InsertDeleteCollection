@@ -18,18 +18,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func allButtonsOperationHandling(_ sender: UIButton!) {
-        if sender.tag == 1{
+        switch sender.tag {
+        case 1:
             insert3ItemAtEnd()
-        }else if sender.tag == 2{
+        case 2:
             delete3ItemAtEnd()
-        }else if sender.tag == 3{
+        case 3:
             updatingItemAtIndex2()
-        }else if sender.tag == 4{
+        case 4:
             moveEToEnd()
-        }else if sender.tag == 5{
-            delete3beggingInsert3End()
-        }else if sender.tag == 6{
+        case 5:
             insert3BeggingDelete3End()
+        case 6:
+            delete3beggingInsert3End()
+        default:
+            return
         }
     }
     
@@ -88,31 +91,24 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 
 extension ViewController: FinalSelection {
     func state(value: Int) {
-        if value == 1 {
-            alphabetCollectionView.reloadData()
-        }
+        _ = value == 1 ? alphabetCollectionView.reloadData() : nil
     }
+    
 }
 
 extension ViewController {
     private func insert3ItemAtEnd() {
-        CollectionViewConfigurations.shared.itemsList.append("1")
-        CollectionViewConfigurations.shared.itemsList.append("2")
-        CollectionViewConfigurations.shared.itemsList.append("3")
-        self.alphabetCollectionView.insertItems(at:
-            [IndexPath(item: CollectionViewConfigurations.shared.itemsList.count-3, section: 0),
-             IndexPath(item: CollectionViewConfigurations.shared.itemsList.count-2, section: 0),
-             IndexPath(item: CollectionViewConfigurations.shared.itemsList.count-1, section: 0)])
+        for i in 1...3 {
+            CollectionViewConfigurations.shared.itemsList.append("\(i)")
+            self.alphabetCollectionView.insertItems(at: [IndexPath(item: CollectionViewConfigurations.shared.itemsList.count-1, section: 0)])
+        }
     }
     
     private func delete3ItemAtEnd() {
-        CollectionViewConfigurations.shared.itemsList.remove(at: CollectionViewConfigurations.shared.itemsList.count-1)
-        CollectionViewConfigurations.shared.itemsList.remove(at: CollectionViewConfigurations.shared.itemsList.count-1)
-        CollectionViewConfigurations.shared.itemsList.remove(at: CollectionViewConfigurations.shared.itemsList.count-1)
-        self.alphabetCollectionView.deleteItems(at:
-            [IndexPath(item:CollectionViewConfigurations.shared.itemsList.count+2, section: 0),
-             IndexPath(item: CollectionViewConfigurations.shared.itemsList.count+1, section: 0),
-             IndexPath(item: CollectionViewConfigurations.shared.itemsList.count, section: 0)])
+        for _ in 0..<3 {
+            CollectionViewConfigurations.shared.itemsList.remove(at: CollectionViewConfigurations.shared.itemsList.count-1)
+            self.alphabetCollectionView.deleteItems(at: [IndexPath(item:CollectionViewConfigurations.shared.itemsList.count, section: 0)])
+        }
     }
     
     private func updatingItemAtIndex2() {
@@ -139,9 +135,9 @@ extension ViewController {
     private func delete3beggingInsert3End() {
         if CollectionViewConfigurations.shared.itemsList.count > 3 {
             alphabetCollectionView.performBatchUpdates( {
-                delete3Operation(at: 0, 1, 2)
+                delete3Operation(at: [0, 1, 2])
                 let countAfterDelete = CollectionViewConfigurations.shared.itemsList.count
-                insert3Operation(at: countAfterDelete, countAfterDelete+1, countAfterDelete+2, end: 1)
+                insert3Operation(at: [countAfterDelete, countAfterDelete+1, countAfterDelete+2], end: 1)
             }, completion: nil)
         }
     }
@@ -149,35 +145,23 @@ extension ViewController {
     private func insert3BeggingDelete3End() {
         alphabetCollectionView.performBatchUpdates( {
             let countAfterDelete = CollectionViewConfigurations.shared.itemsList.count-1
-            delete3Operation(at: countAfterDelete, countAfterDelete-1, countAfterDelete-2)
-            insert3Operation(at: 0, 1, 2, end: 0)
+            delete3Operation(at: [countAfterDelete, countAfterDelete-1, countAfterDelete-2])
+            insert3Operation(at: [0, 1, 2], end: 0)
         }, completion: nil)
     }
     
-    private func delete3Operation(at firstIndex:Int, _ secondIndex:Int, _ thirdIndex:Int) {
-        CollectionViewConfigurations.shared.itemsList.remove(at: firstIndex)
-        CollectionViewConfigurations.shared.itemsList.remove(at: secondIndex)
-        CollectionViewConfigurations.shared.itemsList.remove(at: thirdIndex)
-        alphabetCollectionView.deleteItems(at:
-            [IndexPath(item: firstIndex, section: 0),
-             IndexPath(item: secondIndex, section: 0),
-             IndexPath(item: thirdIndex, section: 0)])
+    private func delete3Operation(at indexArray: [Int]) {
+        for (_, value) in indexArray.enumerated() {
+            CollectionViewConfigurations.shared.itemsList.remove(at: value)
+            self.alphabetCollectionView.deleteItems(at: [IndexPath(item: value, section: 0)])
+        }
     }
     
-    private func insert3Operation(at firstIndex:Int, _ secondIndex:Int, _ thirdIndex:Int, end:Int) {
-        if end == 1 {
-            CollectionViewConfigurations.shared.itemsList.append("\(firstIndex)")
-            CollectionViewConfigurations.shared.itemsList.append("\(secondIndex)")
-            CollectionViewConfigurations.shared.itemsList.append("\(thirdIndex)")
-        } else {
-            CollectionViewConfigurations.shared.itemsList.insert("\(firstIndex)", at: firstIndex)
-            CollectionViewConfigurations.shared.itemsList.insert("\(secondIndex)", at: secondIndex)
-            CollectionViewConfigurations.shared.itemsList.insert("\(thirdIndex)", at: thirdIndex)
+    private func insert3Operation(at indexArray: [Int], end:Int) {
+        for (_, value) in indexArray.enumerated() {
+            _ = end == 1 ? CollectionViewConfigurations.shared.itemsList.append("\(value)") : CollectionViewConfigurations.shared.itemsList.insert("\(value)", at: value)
+            alphabetCollectionView.insertItems(at: [IndexPath(item: value, section: 0)])
         }
-        alphabetCollectionView.insertItems(at:
-            [IndexPath(item: firstIndex, section: 0),
-             IndexPath(item: secondIndex, section: 0),
-             IndexPath(item: thirdIndex, section: 0)])
     }
 }
 
