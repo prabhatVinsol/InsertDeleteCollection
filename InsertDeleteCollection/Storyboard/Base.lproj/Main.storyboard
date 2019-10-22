@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cfY-n6-umd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cfY-n6-umd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,21 +25,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="115" height="30"/>
                                         <state key="normal" title="Insert 3 End"/>
                                         <connections>
-                                            <action selector="allOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KrQ-6g-43Z"/>
+                                            <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KrQ-6g-43Z"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Hlf-5Y-Fji">
                                         <rect key="frame" x="125" y="0.0" width="115" height="30"/>
                                         <state key="normal" title="Delete 3 End"/>
                                         <connections>
-                                            <action selector="allOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bg3-eP-Bu1"/>
+                                            <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bg3-eP-Bu1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ank-BU-baF">
                                         <rect key="frame" x="250" y="0.0" width="115" height="30"/>
                                         <state key="normal" title="Update Index 2"/>
                                         <connections>
-                                            <action selector="allOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rwT-15-nAw"/>
+                                            <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rwT-15-nAw"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -54,21 +54,21 @@
                                         <rect key="frame" x="0.0" y="0.0" width="115" height="48"/>
                                         <state key="normal" title="Move E  To End"/>
                                         <connections>
-                                            <action selector="allOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9dH-s8-KO6"/>
+                                            <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9dH-s8-KO6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="wRJ-Is-f53">
                                         <rect key="frame" x="125" y="0.0" width="115" height="48"/>
                                         <state key="normal" title="Delete 3 End Insert 3 Begin"/>
                                         <connections>
-                                            <action selector="allOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h6o-wI-VmC"/>
+                                            <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h6o-wI-VmC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EmZ-ob-FDR">
                                         <rect key="frame" x="250" y="0.0" width="115" height="48"/>
                                         <state key="normal" title="Insert 3 End Delete 3 Begin"/>
                                         <connections>
-                                            <action selector="allOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o3u-sr-kI4"/>
+                                            <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o3u-sr-kI4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -137,7 +137,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="AlphabetCollectionView" destination="TOx-2I-79c" id="5WB-pc-leY"/>
+                        <outlet property="alphabetCollectionView" destination="TOx-2I-79c" id="5WB-pc-leY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
