@@ -1,5 +1,5 @@
 import Foundation
 
-struct Content{
-    var value:String?
+struct Content {
+    var value:String
 }

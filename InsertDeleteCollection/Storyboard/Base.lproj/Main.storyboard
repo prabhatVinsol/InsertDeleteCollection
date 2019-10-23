@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cfY-n6-umd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cfY-n6-umd">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -123,8 +123,8 @@
                             <constraint firstItem="qq6-pB-Q5B" firstAttribute="top" secondItem="U0g-4B-248" secondAttribute="bottom" constant="10" id="KNN-qs-LQ6"/>
                             <constraint firstItem="TOx-2I-79c" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="PLB-cn-BvO"/>
                             <constraint firstItem="TOx-2I-79c" firstAttribute="top" secondItem="qq6-pB-Q5B" secondAttribute="bottom" constant="10" id="S6X-XK-xG1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TOx-2I-79c" secondAttribute="trailing" constant="5" id="dL0-sB-ahi"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="U0g-4B-248" secondAttribute="trailing" constant="5" id="jac-0U-JcK"/>
-                            <constraint firstAttribute="trailing" secondItem="TOx-2I-79c" secondAttribute="trailing" constant="5" id="sHr-5k-jwr"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

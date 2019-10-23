@@ -2,13 +2,16 @@ import UIKit
 
 class ViewController: UIViewController {
     private var reuseIdentifier = "collectionIdentifier"
-    @IBOutlet weak var alphabetCollectionView: UICollectionView!
+    private var characterArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    private var section = 0
+    @IBOutlet private weak var alphabetCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         alphabetCollectionView.delegate = self
         alphabetCollectionView.dataSource = self
         alphabetCollectionView.reloadData()
+        Layout.shared.numberOfItemsPerRow(forAvailable: view.frame.width)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -17,7 +20,11 @@ class ViewController: UIViewController {
         vc?.finalSelectionDelegate = self
     }
     
-    @IBAction func allButtonsOperationHandling(_ sender: UIButton!) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        Layout.shared.numberOfItemsPerRow(forAvailable: size.width)
+    }
+    @IBAction private func allButtonsOperationHandling(_ sender: UIButton!) {
         switch sender.tag {
         case 1:
             insert3ItemAtEnd()
@@ -36,7 +43,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func navigationItemClick(_ sender: UIBarButtonItem!) {
+    @IBAction private func navigationItemClick(_ sender: UIBarButtonItem!) {
         performSegue(withIdentifier: "ConfigurationSeague", sender: self)
     }
     
@@ -44,7 +51,7 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CollectionViewConfigurations.shared.itemsList.count
+        return characterArray.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -53,14 +60,14 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? InsertDeleteCollectionViewCell
-        cell?.value = Content(value: CollectionViewConfigurations.shared.itemsList[indexPath.row])
+        cell?.value = Content(value: characterArray[indexPath.row])
         return cell!
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        UICollectionViewCell.transition(with: collectionView.cellForItem(at: indexPath)!, duration: TimeInterval(CollectionViewConfigurations.shared.animationDuration), options: .transitionFlipFromRight, animations: {
-            CollectionViewConfigurations.shared.itemsList.remove(at: indexPath.row)
-        }, completion: {finished in
+        UICollectionViewCell.transition(with: collectionView.cellForItem(at: indexPath)!, duration: TimeInterval(CollectionViewConfigurations.shared.animationDuration ?? 4), options: .transitionFlipFromRight, animations: {
+            self.characterArray.remove(at: indexPath.row)
+        }, completion: { finished in
             self.alphabetCollectionView.deleteItems(at: [indexPath])
         })
     }
@@ -69,29 +76,25 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = CollectionViewConfigurations.shared.spaceBetweenItems * (CollectionViewConfigurations.shared.itemsPerRow + 1)*2
-        let availableWidth = view.frame.width - CGFloat(integerLiteral: paddingSpace)
-        let widthPerItem = availableWidth / CGFloat(integerLiteral: CollectionViewConfigurations.shared.itemsPerRow)
-        return CGSize(width: widthPerItem, height: widthPerItem)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: CGFloat(integerLiteral: CollectionViewConfigurations.shared.spaceBetweenItems), left: CGFloat(integerLiteral: CollectionViewConfigurations.shared.spaceBetweenItems), bottom: CGFloat(integerLiteral: CollectionViewConfigurations.shared.spaceBetweenItems), right: CGFloat(integerLiteral: CollectionViewConfigurations.shared.spaceBetweenItems))
+        return Layout.shared.cellWidthAndHeight()
     }
     
     func collectionView(_ collectionView: UICollectionView,layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(integerLiteral: 2*CollectionViewConfigurations.shared.spaceBetweenItems)
+        return Layout.shared.interSpaceOfCellsColumn()
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return CGFloat(integerLiteral: CollectionViewConfigurations.shared.spaceBetweenItems)
+        return Layout.shared.interSpacingOfCells(ofAvailable: view.frame.width)/2
     }
     
 }
 
 extension ViewController: FinalSelection {
     func state(value: Int) {
-        _ = value == 1 ? alphabetCollectionView.reloadData() : nil
+        Layout.shared.numberOfItemsPerRow(forAvailable: view.frame.width)
+        if value == 1 {
+            alphabetCollectionView.reloadData()
+        }
     }
     
 }
@@ -99,44 +102,44 @@ extension ViewController: FinalSelection {
 extension ViewController {
     private func insert3ItemAtEnd() {
         for i in 1...3 {
-            CollectionViewConfigurations.shared.itemsList.append("\(i)")
-            self.alphabetCollectionView.insertItems(at: [IndexPath(item: CollectionViewConfigurations.shared.itemsList.count-1, section: 0)])
+            characterArray.append("\(i)")
+            self.alphabetCollectionView.insertItems(at: [IndexPath(item: characterArray.count-1, section: section)])
         }
     }
     
     private func delete3ItemAtEnd() {
         for _ in 0..<3 {
-            CollectionViewConfigurations.shared.itemsList.remove(at: CollectionViewConfigurations.shared.itemsList.count-1)
-            self.alphabetCollectionView.deleteItems(at: [IndexPath(item:CollectionViewConfigurations.shared.itemsList.count, section: 0)])
+            characterArray.remove(at: characterArray.count-1)
+            self.alphabetCollectionView.deleteItems(at: [IndexPath(item:characterArray.count, section: section)])
         }
     }
     
     private func updatingItemAtIndex2() {
-        CollectionViewConfigurations.shared.itemsList[2] = CollectionViewConfigurations.shared.itemsList[2] + "0"
-        alphabetCollectionView.reloadItems(at: [IndexPath(item: 2, section: 0)])
+        characterArray[2] = characterArray[2] + "0"
+        alphabetCollectionView.reloadItems(at: [IndexPath(item: 2, section: section)])
     }
     
     private func moveEToEnd() {
-        if CollectionViewConfigurations.shared.itemsList.contains("e") {
+        if characterArray.contains("e") {
             var indexValue = -1
-            for (index, value) in CollectionViewConfigurations.shared.itemsList.enumerated() {
+            for (index, value) in characterArray.enumerated() {
                 if value == "e" {
                     indexValue = index
                 }
             }
             if indexValue != -1 {
-                CollectionViewConfigurations.shared.itemsList.remove(at: indexValue)
-                CollectionViewConfigurations.shared.itemsList.append("e")
-                alphabetCollectionView.moveItem(at: IndexPath(item: indexValue, section: 0), to: IndexPath(item: CollectionViewConfigurations.shared.itemsList.count-1, section: 0))
+                characterArray.remove(at: indexValue)
+                characterArray.append("e")
+                alphabetCollectionView.moveItem(at: IndexPath(item: indexValue, section: section), to: IndexPath(item: characterArray.count-1, section: section))
             }
         }
     }
     
     private func delete3beggingInsert3End() {
-        if CollectionViewConfigurations.shared.itemsList.count > 3 {
+        if characterArray.count > 3 {
             alphabetCollectionView.performBatchUpdates( {
                 delete3Operation(at: [0, 1, 2])
-                let countAfterDelete = CollectionViewConfigurations.shared.itemsList.count
+                let countAfterDelete = characterArray.count
                 insert3Operation(at: [countAfterDelete, countAfterDelete+1, countAfterDelete+2], end: 1)
             }, completion: nil)
         }
@@ -144,7 +147,7 @@ extension ViewController {
     
     private func insert3BeggingDelete3End() {
         alphabetCollectionView.performBatchUpdates( {
-            let countAfterDelete = CollectionViewConfigurations.shared.itemsList.count-1
+            let countAfterDelete = characterArray.count-1
             delete3Operation(at: [countAfterDelete, countAfterDelete-1, countAfterDelete-2])
             insert3Operation(at: [0, 1, 2], end: 0)
         }, completion: nil)
@@ -152,15 +155,15 @@ extension ViewController {
     
     private func delete3Operation(at indexArray: [Int]) {
         for (_, value) in indexArray.enumerated() {
-            CollectionViewConfigurations.shared.itemsList.remove(at: value)
-            self.alphabetCollectionView.deleteItems(at: [IndexPath(item: value, section: 0)])
+            characterArray.remove(at: value)
+            self.alphabetCollectionView.deleteItems(at: [IndexPath(item: value, section: section)])
         }
     }
     
     private func insert3Operation(at indexArray: [Int], end:Int) {
         for (_, value) in indexArray.enumerated() {
-            _ = end == 1 ? CollectionViewConfigurations.shared.itemsList.append("\(value)") : CollectionViewConfigurations.shared.itemsList.insert("\(value)", at: value)
-            alphabetCollectionView.insertItems(at: [IndexPath(item: value, section: 0)])
+            _ = end == 1 ? characterArray.append("\(value)") : characterArray.insert("\(value)", at: value)
+            alphabetCollectionView.insertItems(at: [IndexPath(item: value, section: section)])
         }
     }
 }

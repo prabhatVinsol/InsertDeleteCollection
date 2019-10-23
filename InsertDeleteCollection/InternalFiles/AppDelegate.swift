@@ -7,7 +7,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        setSharedValueFromDB()
         return true
     }
 
@@ -33,6 +33,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    private func setSharedValueFromDB() {
+        let userDefault = UserDefaults.standard
+        CollectionViewConfigurations.shared.animationDuration = fetchValueForFloat(userDefault: Constant.shared.animationSpeedKey, with: userDefault) ?? 4
+        CollectionViewConfigurations.shared.cellHeight = fetchValueForFloat(userDefault: Constant.shared.sizeOfItemKey, with: userDefault) ?? 100
+        CollectionViewConfigurations.shared.spaceBetweenItems = fetchValueForInt(userDefault: Constant.shared.spacingBetweenItemsKey, with: userDefault) ?? 5
+    }
+    
+    private func fetchValueForFloat(userDefault key: String, with userDefault: UserDefaults) -> Float? {
+        return userDefault.object(forKey: key) != nil ? userDefault.float(forKey: key) : nil
+    }
+    
+    private func fetchValueForInt(userDefault key: String, with userDefault: UserDefaults) -> Int? {
+       return userDefault.object(forKey: key) != nil ? userDefault.integer(forKey: key) : nil
+    }
+    
 }
 

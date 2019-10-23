@@ -1,9 +1,9 @@
 import UIKit
 
 class InsertDeleteCollectionViewCell: UICollectionViewCell {
+    @IBOutlet private weak var testLabel: UILabel!
     
-    @IBOutlet weak var testLabel: UILabel!
-    var value: Content?{
+    var value: Content? {
         didSet{
             guard let contentValue = value else { return }
             setvalueToLabel(with: contentValue)
