@@ -73,7 +73,7 @@ extension ConfigurationViewController {
             saveConfigurationValues(of: sizeToBeChecked, and: spaceToBEChecked)
             return true
         } else {
-            self.showAlert(with: "Invalid Value", and: "Please check value for for size and spacing. It is invalid.")
+            self.showAlert(with: AlertMessages.shared.invalidValueTitle, and: AlertMessages.shared.invalidValueMessage)
             return false
         }
     }
