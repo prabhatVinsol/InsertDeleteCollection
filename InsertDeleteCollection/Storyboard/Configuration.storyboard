@@ -31,6 +31,7 @@
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="zxX-Sf-P6x">
                                 <rect key="frame" x="13" y="110" width="349" height="31"/>
+                                <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="ZI2-AD-IiE"/>
                                 </constraints>
@@ -114,11 +115,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Configuration" id="3HB-TS-DZO">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="8G9-me-ET8">
+                            <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="cancel:" destination="3XP-tB-7nR" id="VXg-eJ-mou"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Save" id="G3o-7H-dqg">
+                            <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="saveButton:" destination="3XP-tB-7nR" id="1XC-9H-ejt"/>
                             </connections>

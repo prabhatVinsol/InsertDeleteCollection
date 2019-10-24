@@ -18,26 +18,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="U0g-4B-248">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="U0g-4B-248">
                                 <rect key="frame" x="5" y="74" width="365" height="30"/>
                                 <subviews>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="zg2-gK-zw6">
-                                        <rect key="frame" x="0.0" y="0.0" width="115" height="30"/>
-                                        <state key="normal" title="Insert 3 End"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="111.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <state key="normal" title="Insert 3 End">
+                                            <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KrQ-6g-43Z"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Hlf-5Y-Fji">
-                                        <rect key="frame" x="125" y="0.0" width="115" height="30"/>
-                                        <state key="normal" title="Delete 3 End"/>
+                                        <rect key="frame" x="126.5" y="0.0" width="112" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <state key="normal" title="Delete 3 End">
+                                            <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Bg3-eP-Bu1"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="ank-BU-baF">
-                                        <rect key="frame" x="250" y="0.0" width="115" height="30"/>
-                                        <state key="normal" title="Update Index 2"/>
+                                        <rect key="frame" x="253.5" y="0.0" width="111.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <state key="normal" title="Update Index 2">
+                                            <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rwT-15-nAw"/>
                                         </connections>
@@ -47,26 +56,35 @@
                                     <constraint firstAttribute="height" constant="30" id="5RW-V8-seK"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="qq6-pB-Q5B">
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="qq6-pB-Q5B">
                                 <rect key="frame" x="5" y="114" width="365" height="48"/>
                                 <subviews>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="T1B-BZ-1e7">
-                                        <rect key="frame" x="0.0" y="0.0" width="115" height="48"/>
-                                        <state key="normal" title="Move E  To End"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="111.5" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <state key="normal" title="Move E  To End">
+                                            <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9dH-s8-KO6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="wRJ-Is-f53">
-                                        <rect key="frame" x="125" y="0.0" width="115" height="48"/>
-                                        <state key="normal" title="Delete 3 End Insert 3 Begin"/>
+                                        <rect key="frame" x="126.5" y="0.0" width="112" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <state key="normal" title="Delete 3 End Insert 3 Begin">
+                                            <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="h6o-wI-VmC"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="EmZ-ob-FDR">
-                                        <rect key="frame" x="250" y="0.0" width="115" height="48"/>
-                                        <state key="normal" title="Insert 3 End Delete 3 Begin"/>
+                                        <rect key="frame" x="253.5" y="0.0" width="111.5" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <state key="normal" title="Insert 3 End Delete 3 Begin">
+                                            <color key="titleColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
                                         <connections>
                                             <action selector="allButtonsOperationHandling:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o3u-sr-kI4"/>
                                         </connections>
@@ -93,15 +111,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="102" height="97"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Test" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DkE-32-mw1">
-                                                    <rect key="frame" x="35" y="38.5" width="32.5" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.59470126295336789" green="0.59470126295336789" blue="0.59470126295336789" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="a" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DkE-32-mw1">
+                                                    <rect key="frame" x="46" y="38.5" width="10" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
-                                        <color key="backgroundColor" red="1" green="0.571043181068283" blue="0.59901776753864255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="DkE-32-mw1" firstAttribute="centerY" secondItem="EDG-2b-HpQ" secondAttribute="centerY" id="NJi-bh-Vzm"/>
                                             <constraint firstItem="DkE-32-mw1" firstAttribute="centerX" secondItem="EDG-2b-HpQ" secondAttribute="centerX" id="n18-QY-E9c"/>
@@ -130,6 +148,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="InsertDeleteCell" id="pIi-w7-hjR">
                         <barButtonItem key="rightBarButtonItem" title="Config" id="XE6-tQ-MSE">
+                            <color key="tintColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="navigationItemClick:" destination="BYZ-38-t0r" id="bnc-xK-4BJ"/>
                                 <segue destination="gOT-5L-B54" kind="show" identifier="ConfigurationSeague" id="XAm-fG-csu"/>

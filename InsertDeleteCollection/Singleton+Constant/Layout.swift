@@ -15,7 +15,6 @@ class Layout {
         let savedSpacing = CollectionViewConfigurations.shared.spaceBetweenItems ?? 5
         var requiredWidth = counter * savedHeight + (counter - 1) * savedSpacing
         while CGFloat(requiredWidth) < (width) {
-            print(counter)
             counter += 1
             requiredWidth = counter * savedHeight + (counter - 1) * savedSpacing
         }

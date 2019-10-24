@@ -8,17 +8,17 @@ class CollectionViewConfigurations {
     internal var itemsPerRow = 4
     internal var spaceBetweenItems: Int? {
         didSet {
-            userDefault.set(CollectionViewConfigurations.shared.spaceBetweenItems, forKey: Constant.shared.spacingBetweenItemsKey)
+            userDefault.set(CollectionViewConfigurations.shared.spaceBetweenItems, forKey: Keys.shared.spacingBetweenItemsKey)
         }
     }
     internal var cellHeight: Float? {
         didSet {
-            userDefault.set(CollectionViewConfigurations.shared.cellHeight, forKey: Constant.shared.sizeOfItemKey)
+            userDefault.set(CollectionViewConfigurations.shared.cellHeight, forKey: Keys.shared.sizeOfItemKey)
         }
     }
     internal var animationDuration: Float? {
         didSet {
-            userDefault.set(CollectionViewConfigurations.shared.animationDuration, forKey: Constant.shared.animationSpeedKey)
+            userDefault.set(CollectionViewConfigurations.shared.animationDuration, forKey: Keys.shared.animationSpeedKey)
         }
     }
     

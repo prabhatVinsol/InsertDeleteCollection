@@ -33,33 +33,26 @@ class ConfigurationViewController: UIViewController {
 
     @IBAction private func sliderHandling(_ sender: UISlider) {
         animationValue.text = "\(String(format: "%.1f", animationSlider.value))/5.0"
-
     }
     
     @IBAction private func saveButton(_ sender: Any) {
-        //Assign to shared value
         guard let sizeValueOfField = sizeValue.text, let spacingValueOfField = spacingValue.text else {
-            //Show Alert that check value of size and spacing
+            self.showAlert(with: "Enter Value", and: "Please enter size and spacing value.")
             return
         }
         let sizeToBeChecked = sizeValueOfField == "" ? Int(cellSize) : Int(sizeValueOfField)
         let spaceToBEchecked = spacingValueOfField == "" ? Int(cellSpacing) : Int(spacingValueOfField)
-        if checkInvalidValues(of: sizeToBeChecked ?? 100) && checkInvalidValues(of: spaceToBEchecked ?? 5) {
-            saveConfigurationValues(of: sizeToBeChecked ?? 100, and: spaceToBEchecked ?? 5)
-        } else {
-            // Show alert for invalid value of the fields
+        if !handleInvalidValue(with: sizeToBeChecked ?? 100, and: spaceToBEchecked ?? 5) {
+            return
         }
-        guard let finalSelectionDelegateValue = finalSelectionDelegate else { return }
-        finalSelectionDelegateValue.state(value: 1)
-        self.dismiss(animated: true, completion: nil)
+        handleDelegateWork()
     }
     
 }
 
 extension ConfigurationViewController {
     private func saveConfigurationValues(of size: Int, and spacing: Int) {
-        let spacingValue = Int(spacing)
-        CollectionViewConfigurations.shared.spaceBetweenItems = spacingValue
+        CollectionViewConfigurations.shared.spaceBetweenItems = spacing
         let cellHeight = Float(size)
         CollectionViewConfigurations.shared.cellHeight = cellHeight
         CollectionViewConfigurations.shared.animationDuration = animationSlider.value
@@ -67,5 +60,29 @@ extension ConfigurationViewController {
     
     private func checkInvalidValues(of sizeOrSpacing: Int) -> Bool {
         return view.frame.width > CGFloat(integerLiteral: Int(sizeOrSpacing))
+    }
+    
+    private func handleDelegateWork() {
+        guard let finalSelectionDelegateValue = finalSelectionDelegate else { return }
+        finalSelectionDelegateValue.state(value: 1)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    private func handleInvalidValue(with sizeToBeChecked: Int, and spaceToBEChecked: Int) -> Bool {
+        if checkInvalidValues(of: sizeToBeChecked) && checkInvalidValues(of: spaceToBEChecked) {
+            saveConfigurationValues(of: sizeToBeChecked, and: spaceToBEChecked)
+            return true
+        } else {
+            self.showAlert(with: "Invalid Value", and: "Please check value for for size and spacing. It is invalid.")
+            return false
+        }
+    }
+}
+
+extension UIViewController {
+    internal func showAlert(with title: String, and message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alertVC, animated: true, completion: nil)
     }
 }

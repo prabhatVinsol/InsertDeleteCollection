@@ -2,12 +2,16 @@ import UIKit
 
 class ViewController: UIViewController {
     private var reuseIdentifier = "collectionIdentifier"
-    private var characterArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+    private var characterArray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
     private var section = 0
     @IBOutlet private weak var alphabetCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        initialSetUp()
+    }
+    
+    private func initialSetUp() {
         alphabetCollectionView.delegate = self
         alphabetCollectionView.dataSource = self
         alphabetCollectionView.reloadData()
@@ -24,6 +28,7 @@ class ViewController: UIViewController {
         super.viewWillTransition(to: size, with: coordinator)
         Layout.shared.numberOfItemsPerRow(forAvailable: size.width)
     }
+    
     @IBAction private func allButtonsOperationHandling(_ sender: UIButton!) {
         switch sender.tag {
         case 1:
@@ -101,70 +106,103 @@ extension ViewController: FinalSelection {
 
 extension ViewController {
     private func insert3ItemAtEnd() {
+        var indexPathArray = [IndexPath]()
         for i in 1...3 {
             characterArray.append("\(i)")
-            self.alphabetCollectionView.insertItems(at: [IndexPath(item: characterArray.count-1, section: section)])
+            indexPathArray.append(IndexPath(item: characterArray.count - 1, section: section))
         }
+        self.alphabetCollectionView.insertItems(at: indexPathArray)
     }
     
     private func delete3ItemAtEnd() {
+        var indexPathArray = [IndexPath]()
         for _ in 0..<3 {
-            characterArray.remove(at: characterArray.count-1)
-            self.alphabetCollectionView.deleteItems(at: [IndexPath(item:characterArray.count, section: section)])
+            if characterArray.isEmpty { break }
+            characterArray.removeLast()
+            indexPathArray.append(IndexPath(item: characterArray.count, section: section))
         }
+        self.alphabetCollectionView.deleteItems(at: indexPathArray)
     }
     
     private func updatingItemAtIndex2() {
+        if characterArray.count < 3 {
+            self.showAlert(with: AlertMessages.shared.indexNotFoundTitle, and: AlertMessages.shared.indexNotFoundMessage)
+            return
+        }
         characterArray[2] = characterArray[2] + "0"
         alphabetCollectionView.reloadItems(at: [IndexPath(item: 2, section: section)])
     }
     
     private func moveEToEnd() {
-        if characterArray.contains("e") {
-            var indexValue = -1
-            for (index, value) in characterArray.enumerated() {
-                if value == "e" {
-                    indexValue = index
-                }
-            }
-            if indexValue != -1 {
-                characterArray.remove(at: indexValue)
-                characterArray.append("e")
-                alphabetCollectionView.moveItem(at: IndexPath(item: indexValue, section: section), to: IndexPath(item: characterArray.count-1, section: section))
-            }
+        let index = characterArray.index(of: "e")
+        guard let indexValue = index else {
+            self.showAlert(with: AlertMessages.shared.valueNotFoundTitle, and: AlertMessages.shared.valueNotFoundMessage)
+            return
         }
+        characterArray.remove(at: indexValue)
+        characterArray.append("e")
+        alphabetCollectionView.moveItem(at: IndexPath(item: indexValue, section: section), to: IndexPath(item: characterArray.count-1, section: section))
+        
     }
     
     private func delete3beggingInsert3End() {
         if characterArray.count > 3 {
             alphabetCollectionView.performBatchUpdates( {
-                delete3Operation(at: [0, 1, 2])
+                delete3Operation(of: [0, 1, 2], at: false)
                 let countAfterDelete = characterArray.count
-                insert3Operation(at: [countAfterDelete, countAfterDelete+1, countAfterDelete+2], end: 1)
+                insert3Operation(at: [countAfterDelete, countAfterDelete+1, countAfterDelete+2])
             }, completion: nil)
         }
     }
     
     private func insert3BeggingDelete3End() {
+        if characterArray.isEmpty { return }
         alphabetCollectionView.performBatchUpdates( {
-            let countAfterDelete = characterArray.count-1
-            delete3Operation(at: [countAfterDelete, countAfterDelete-1, countAfterDelete-2])
-            insert3Operation(at: [0, 1, 2], end: 0)
+            delete3Operation(of: indexesToBeDeletedAtEnd(count: characterArray.count), at: true)
+            insert3Operation(at: [0, 1, 2])
         }, completion: nil)
     }
     
-    private func delete3Operation(at indexArray: [Int]) {
+    private func indexesToBeDeletedAtEnd(count: Int) -> [Int] {
+        return count < 3 ? arrayLessThanThree(ofCount: count) : arraySize(ofCount: count)
+    }
+    
+    private func arrayLessThanThree(ofCount count: Int) -> [Int] {
+        var indexArray = [Int]()
+        for i in 0..<count {
+            indexArray.append(i)
+        }
+        return indexArray
+    }
+    
+    private func arraySize(ofCount count: Int) -> [Int] {
+        return [count-1, count-2, count-3]
+    }
+    
+    private func delete3Operation(of indexArray: [Int], at isEnd: Bool) {
+        var indexPathArray = [IndexPath]()
         for (_, value) in indexArray.enumerated() {
-            characterArray.remove(at: value)
-            self.alphabetCollectionView.deleteItems(at: [IndexPath(item: value, section: section)])
+            removeElementFromCollection(at: isEnd)
+            indexPathArray.append(IndexPath(item: value, section: section))
+        }
+        self.alphabetCollectionView.deleteItems(at: indexPathArray)
+    }
+    
+    private func removeElementFromCollection(at end: Bool) {
+        if end {
+            characterArray.removeLast()
+        } else {
+            characterArray.removeFirst()
         }
     }
     
-    private func insert3Operation(at indexArray: [Int], end:Int) {
+    private func insert3Operation(at indexArray: [Int]) {
+        var indexPathArray = [IndexPath]()
         for (_, value) in indexArray.enumerated() {
-            _ = end == 1 ? characterArray.append("\(value)") : characterArray.insert("\(value)", at: value)
-            alphabetCollectionView.insertItems(at: [IndexPath(item: value, section: section)])
+            indexPathArray.append(IndexPath(item: value, section: section))
+            characterArray.insert("\(value)", at: value)
         }
+        self.alphabetCollectionView.insertItems(at: indexPathArray)
     }
 }
 

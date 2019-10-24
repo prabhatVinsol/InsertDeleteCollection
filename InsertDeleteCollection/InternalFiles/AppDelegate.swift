@@ -5,7 +5,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setSharedValueFromDB()
         return true
@@ -35,9 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func setSharedValueFromDB() {
         let userDefault = UserDefaults.standard
-        CollectionViewConfigurations.shared.animationDuration = fetchValueForFloat(userDefault: Constant.shared.animationSpeedKey, with: userDefault) ?? 4
-        CollectionViewConfigurations.shared.cellHeight = fetchValueForFloat(userDefault: Constant.shared.sizeOfItemKey, with: userDefault) ?? 100
-        CollectionViewConfigurations.shared.spaceBetweenItems = fetchValueForInt(userDefault: Constant.shared.spacingBetweenItemsKey, with: userDefault) ?? 5
+        CollectionViewConfigurations.shared.animationDuration = fetchValueForFloat(userDefault: Keys.shared.animationSpeedKey, with: userDefault) ?? 4
+        CollectionViewConfigurations.shared.cellHeight = fetchValueForFloat(userDefault: Keys.shared.sizeOfItemKey, with: userDefault) ?? 100
+        CollectionViewConfigurations.shared.spaceBetweenItems = fetchValueForInt(userDefault: Keys.shared.spacingBetweenItemsKey, with: userDefault) ?? 5
     }
     
     private func fetchValueForFloat(userDefault key: String, with userDefault: UserDefaults) -> Float? {
