@@ -134,13 +134,13 @@ extension ViewController {
     }
     
     private func moveEToEnd() {
-        let index = characterArray.index(of: "e")
+        let index = characterArray.index(of: "E")
         guard let indexValue = index else {
             self.showAlert(with: AlertMessages.shared.valueNotFoundTitle, and: AlertMessages.shared.valueNotFoundMessage)
             return
         }
         characterArray.remove(at: indexValue)
-        characterArray.append("e")
+        characterArray.append("E")
         alphabetCollectionView.moveItem(at: IndexPath(item: indexValue, section: section), to: IndexPath(item: characterArray.count-1, section: section))
         
     }
