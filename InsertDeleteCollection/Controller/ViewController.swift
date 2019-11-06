@@ -92,7 +92,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return Layout.shared.interSpacingOfCells(ofAvailable: view.frame.width)/2
     }
-
 }
 
 extension ViewController: FinalSelection {
@@ -102,7 +101,6 @@ extension ViewController: FinalSelection {
             alphabetCollectionView.reloadData()
         }
     }
-
 }
 
 extension ViewController {
@@ -161,7 +159,9 @@ extension ViewController {
             insert3Operation(at: [0, 1, 2])
         }, completion: nil)
     }
+}
 
+extension ViewController {
     private func indexesToBeDeletedAtEnd(count: Int) -> [Int] {
         return count < 3 ? arrayLessThanThree(ofCount: count) : arraySize(ofCount: count)
     }
