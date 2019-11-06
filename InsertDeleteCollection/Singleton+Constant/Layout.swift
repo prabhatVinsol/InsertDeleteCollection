@@ -4,11 +4,11 @@ import UIKit
 class Layout {
     internal static let shared = Layout()
     private init() { }
-    
+
     internal func numberOfItemsPerRow(forAvailable width: CGFloat) {
        CollectionViewConfigurations.shared.itemsPerRow = calculateNumberOfItem(for: width)
     }
-    
+
     private func calculateNumberOfItem(for width: CGFloat) -> Int {
         var counter = 1
         let savedHeight = Int(CollectionViewConfigurations.shared.cellHeight ?? 100.0)
@@ -20,12 +20,12 @@ class Layout {
         }
         return counter == 1 ? 1 : (counter - 1)
     }
-    
+
     internal func cellWidthAndHeight() -> CGSize {
         let size = CollectionViewConfigurations.shared.cellHeight ?? 100.0
         return CGSize(width: Double(size), height: Double(size))
     }
-    
+
     internal func interSpacingOfCells(ofAvailable width: CGFloat) -> CGFloat {
         let widthOfCell = Int(CollectionViewConfigurations.shared.cellHeight ?? 100.0)
         let calculatedWidth = CollectionViewConfigurations.shared.itemsPerRow * widthOfCell
@@ -33,7 +33,7 @@ class Layout {
         let spacing = (width - CGFloat(calculatedWidth))/CGFloat(numberOfItems == 1 ? 1 : (numberOfItems - 1))
         return spacing
     }
-    
+
     internal func interSpaceOfCellsColumn() -> CGFloat {
         return CGFloat(CollectionViewConfigurations.shared.spaceBetweenItems ?? 5)
     }

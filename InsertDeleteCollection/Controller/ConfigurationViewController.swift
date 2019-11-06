@@ -9,24 +9,19 @@ class ConfigurationViewController: UIViewController {
     @IBOutlet private weak var animationValue: UILabel!
     @IBOutlet private weak var sizeValue: UITextField!
     @IBOutlet private weak var spacingValue: UITextField!
+
     private var animationSpeedValue = CollectionViewConfigurations.shared.animationDuration ?? 1
     private var cellSize = CollectionViewConfigurations.shared.cellHeight ?? 100
     private var cellSpacing = CollectionViewConfigurations.shared.spaceBetweenItems ?? 5
     private var itemsPerRow = CollectionViewConfigurations.shared.itemsPerRow
+
     internal var finalSelectionDelegate: FinalSelection?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         initiliseSlider()
     }
-    
-    private func initiliseSlider() {
-        animationSlider.setValue(animationSpeedValue, animated: false)
-        animationValue.text = "\(String(format: "%.1f", animationSpeedValue))/5.0"
-        sizeValue.placeholder = "\(cellSize)"
-        spacingValue.placeholder = String(cellSpacing)
-    }
-   
+
     @IBAction func cancel(_ sender:UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -47,7 +42,13 @@ class ConfigurationViewController: UIViewController {
         }
         handleDelegateWork()
     }
-    
+
+    private func initiliseSlider() {
+        animationSlider.setValue(animationSpeedValue, animated: false)
+        animationValue.text = "\(String(format: "%.1f", animationSpeedValue))/5.0"
+        sizeValue.placeholder = "\(cellSize)"
+        spacingValue.placeholder = String(cellSpacing)
+    }
 }
 
 extension ConfigurationViewController {
@@ -57,23 +58,23 @@ extension ConfigurationViewController {
         CollectionViewConfigurations.shared.cellHeight = cellHeight
         CollectionViewConfigurations.shared.animationDuration = animationSlider.value
     }
-    
-    private func checkInvalidValues(of sizeOrSpacing: Int) -> Bool {
-        return view.frame.width > CGFloat(integerLiteral: Int(sizeOrSpacing))
+
+    private func isValueInvalid(for sizeOrSpacing: Int) -> Bool {
+        return (view.frame.width < CGFloat(integerLiteral: Int(sizeOrSpacing)) || sizeOrSpacing < 0)
     }
-    
+
     private func handleDelegateWork() {
         guard let finalSelectionDelegateValue = finalSelectionDelegate else { return }
         finalSelectionDelegateValue.state(value: 1)
         self.dismiss(animated: true, completion: nil)
     }
-    
+
     private func handleInvalidValue(with sizeToBeChecked: Int, and spaceToBEChecked: Int) -> Bool {
-        if checkInvalidValues(of: sizeToBeChecked) && checkInvalidValues(of: spaceToBEChecked) {
+        if !(isValueInvalid(for: sizeToBeChecked) || isValueInvalid(for: spaceToBEChecked)){
             saveConfigurationValues(of: sizeToBeChecked, and: spaceToBEChecked)
             return true
         } else {
-            self.showAlert(with: AlertMessages.shared.invalidValueTitle, and: AlertMessages.shared.invalidValueMessage)
+            self.showAlert(with: Constant.AlertTitles.invalidValueTitle, and: Constant.AlertMessages.invalidValueMessage)
             return false
         }
     }
